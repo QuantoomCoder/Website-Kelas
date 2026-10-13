@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#111214">
+  <meta name="description" content="Website kelas X RPL untuk berbagi informasi, kegiatan, dan kenangan kelas.">
+  <title>Kelas X RPL — Portal Kelas Kita</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <nav class="nav container" aria-label="Navigasi utama">
+      <a class="brand" href="#beranda" aria-label="Kelas X RPL, kembali ke beranda">
+        <span class="crest" aria-hidden="true">✦</span>
+        <span class="brand-copy"><strong>Kelas <span>X RPL</span></strong><small>Portal Kelas Kita</small></span>
+      </a>
+
+      <button class="menu-toggle" id="menuToggle" type="button" aria-label="Buka menu" aria-expanded="false" aria-controls="navLinks">☰</button>
+      <div class="nav-links" id="navLinks">
+        <a class="nav-link active" href="#beranda">⌂ <span>Beranda</span></a>
+        <a class="nav-link" href="#siswa">♟ <span>Nama Siswa</span></a>
+        <a class="nav-link" href="#foto">▧ <span>Foto Kelas</span></a>
+        <a class="nav-link" href="#event">▦ <span>Event</span></a>
+        <a class="nav-link" href="#pengumuman">⚑ <span>Pengumuman</span></a>
+      </div>
+    </nav>
+  </header>
+
+  <section class="hero" id="beranda">
+    <div class="hero-inner container">
+      <div class="class-photo media-frame">
+        <img id="classPhoto" alt="Foto bersama kelas X RPL" hidden>
+        <div class="media-placeholder" id="classPhotoPlaceholder">
+          <span class="placeholder-icon" aria-hidden="true">📷</span>
+          <strong>Foto Kelas X RPL</strong>
+          <p>Tambahkan foto bersama seluruh kelas.</p>
+        </div>
+        <label class="button button-yellow button-small class-photo-change" for="classPhotoInput">＋ Pilih / Ganti Foto</label>
+        <input class="visually-hidden" id="classPhotoInput" type="file" accept="image/*">
+      </div>
+
+      <div class="hero-copy">
+        <p class="eyebrow">Satu kelas, sejuta cerita</p>
+        <h1>KELAS <span>X RPL</span></h1>
+        <h2>Tempat Cerita &amp; Bertumbuh</h2>
+        <p>Ruang digital untuk menyimpan kenangan, berbagi informasi, dan merayakan perjalanan kita bersama.</p>
+        <blockquote>“Bukan hanya tentang apa yang kita pelajari, tetapi juga bagaimana kita tumbuh bersama.”</blockquote>
+      </div>
+
+      <aside class="teacher-card" aria-label="Profil wali kelas">
+        <div class="teacher-photo media-frame">
+          <img id="teacherPhoto" alt="Foto wali kelas" hidden>
+          <div class="teacher-placeholder" id="teacherPhotoPlaceholder"><span aria-hidden="true">👩‍🏫</span><br>Foto Guru</div>
+        </div>
+        <div class="teacher-info">
+          <strong id="teacherName">Nuraini</strong>
+          <small id="teacherRole">Wali Kelas · X RPL</small>
+        </div>
+        <label class="button button-yellow button-small" for="teacherPhotoInput">＋ Foto Guru</label>
+        <input class="visually-hidden" id="teacherPhotoInput" type="file" accept="image/*">
+        <button class="button button-ghost button-small" id="editTeacherButton" type="button">✎ Edit Profil Guru</button>
+      </aside>
+    </div>
+  </section>
+
+  <main class="container main-content">
+    <div class="dashboard-grid">
+      <section class="card" id="siswa">
+        <div class="section-heading">
+          <div class="heading-label"><span class="icon">♟</span><div><h2>Daftar Nama Siswa</h2><p id="studentCount">0 siswa</p></div></div>
+          <button class="button button-yellow" id="addStudentButton" type="button">＋ Tambah</button>
+        </div>
+        <ul class="student-list" id="studentList" aria-label="Daftar siswa"></ul>
+        <p class="helper-text">Data awal merupakan contoh. Silakan ubah sesuai kelasmu.</p>
+      </section>
+
+      <section class="card" id="foto">
+        <div class="section-heading">
+          <div class="heading-label"><span class="icon">▧</span><div><h2>Foto Kelas</h2><p>Dokumentasi kegiatan</p></div></div>
+          <label class="button button-yellow" for="galleryUpload">＋ Foto</label>
+          <input class="visually-hidden" id="galleryUpload" type="file" accept="image/*" multiple>
+        </div>
+        <div class="photo-grid" id="photoGrid"></div>
+      </section>
+
+      <section class="card events-card" id="event">
+        <div class="section-heading">
+          <div class="heading-label"><span class="icon">▦</span><div><h2>Event Kelas</h2><p>Agenda dan kegiatan</p></div></div>
+          <button class="button button-yellow" id="addEventButton" type="button">＋ Event</button>
+        </div>
+        <div class="event-list" id="eventList"></div>
+      </section>
+    </div>
+
+    <section class="card gallery-card" aria-labelledby="galleryHeading">
+      <div class="section-heading">
+        <div><h2 id="galleryHeading">Galeri Kenangan <span aria-hidden="true">✨</span></h2><p>Momen kecil yang jadi cerita besar.</p></div>
+        <label class="button button-yellow" for="wideGalleryUpload">＋ Tambah Foto</label>
+        <input class="visually-hidden" id="wideGalleryUpload" type="file" accept="image/*" multiple>
+      </div>
+      <div class="wide-gallery" id="wideGallery"></div>
+    </section>
+
+    <section class="announcement" id="pengumuman">
+      <div><p class="eyebrow">Informasi kelas</p><h2>📣 Papan Pengumuman</h2><p id="noticeText">Belum ada pengumuman. Tambahkan informasi penting untuk teman-teman sekelas.</p></div>
+      <button class="button button-yellow" id="editNoticeButton" type="button">Edit Pengumuman</button>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner container">
+      <div><strong>✦ KELAS <span>X RPL</span></strong><small>Portal Kelas Kita · Dibuat dengan semangat kebersamaan</small></div>
+      <p>“Satu kelas, sejuta cerita.”</p>
+      <small>© <span id="currentYear"></span> Kelas X RPL</small>
+    </div>
+  </footer>
+
+  <!-- Dialog siswa -->
+  <dialog class="modal" id="studentDialog" aria-labelledby="studentDialogTitle">
+    <form id="studentForm" class="modal-form">
+      <div class="modal-heading"><h2 id="studentDialogTitle">Tambah Siswa</h2><button class="icon-button" type="button" data-close-dialog="studentDialog" aria-label="Tutup">×</button></div>
+      <label for="studentNameInput">Nama siswa</label>
+      <input id="studentNameInput" name="studentName" type="text" maxlength="80" required autocomplete="off" placeholder="Masukkan nama lengkap">
+      <div class="modal-actions"><button class="button button-muted" type="button" data-close-dialog="studentDialog">Batal</button><button class="button button-yellow" type="submit">Simpan</button></div>
+    </form>
+  </dialog>
+
+  <!-- Dialog event -->
+  <dialog class="modal" id="eventDialog" aria-labelledby="eventDialogTitle">
+    <form id="eventForm" class="modal-form">
+      <div class="modal-heading"><h2 id="eventDialogTitle">Tambah Event</h2><button class="icon-button" type="button" data-close-dialog="eventDialog" aria-label="Tutup">×</button></div>
+      <input id="eventIdInput" name="eventId" type="hidden">
+      <label for="eventTitleInput">Nama acara</label><input id="eventTitleInput" name="eventTitle" type="text" maxlength="100" required placeholder="Contoh: Class Meeting">
+      <div class="form-row"><div><label for="eventDayInput">Tanggal</label><input id="eventDayInput" name="eventDay" type="number" min="1" max="31" required value="1"></div><div><label for="eventMonthInput">Bulan</label><select id="eventMonthInput" name="eventMonth" required><option>Jan</option><option>Feb</option><option>Mar</option><option>Apr</option><option>Mei</option><option>Jun</option><option>Jul</option><option>Agu</option><option>Sep</option><option>Okt</option><option>Nov</option><option>Des</option></select></div></div>
+      <label for="eventDescriptionInput">Keterangan</label><textarea id="eventDescriptionInput" name="eventDescription" rows="3" maxlength="250" placeholder="Tambahkan detail acara (opsional)"></textarea>
+      <div class="modal-actions"><button class="button button-muted" type="button" data-close-dialog="eventDialog">Batal</button><button class="button button-yellow" type="submit">Simpan Event</button></div>
+    </form>
+  </dialog>
+
+  <!-- Dialog profil guru -->
+  <dialog class="modal" id="teacherDialog" aria-labelledby="teacherDialogTitle">
+    <form id="teacherForm" class="modal-form">
+      <div class="modal-heading"><h2 id="teacherDialogTitle">Edit Profil Guru</h2><button class="icon-button" type="button" data-close-dialog="teacherDialog" aria-label="Tutup">×</button></div>
+      <label for="teacherNameInput">Nama guru</label><input id="teacherNameInput" maxlength="80" required>
+      <label for="teacherRoleInput">Jabatan / keterangan</label><input id="teacherRoleInput" maxlength="100" required>
+      <div class="modal-actions"><button class="button button-muted" type="button" data-close-dialog="teacherDialog">Batal</button><button class="button button-yellow" type="submit">Simpan Profil</button></div>
+    </form>
+  </dialog>
+
+  <!-- Dialog pengumuman -->
+  <dialog class="modal" id="noticeDialog" aria-labelledby="noticeDialogTitle">
+    <form id="noticeForm" class="modal-form">
+      <div class="modal-heading"><h2 id="noticeDialogTitle">Edit Pengumuman</h2><button class="icon-button" type="button" data-close-dialog="noticeDialog" aria-label="Tutup">×</button></div>
+      <label for="noticeInput">Isi pengumuman</label><textarea id="noticeInput" rows="5" maxlength="1000" placeholder="Tulis informasi penting untuk kelas..."></textarea>
+      <div class="modal-actions"><button class="button button-muted" type="button" data-close-dialog="noticeDialog">Batal</button><button class="button button-yellow" type="submit">Simpan Pengumuman</button></div>
+    </form>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
